@@ -1,0 +1,14 @@
+{
+  "validReservation": {
+    "nombre": "Juana",
+    "apellido": "Perez",
+    "email": "juanap@mail.com",
+    "telefono": "01234567890"
+  },
+  "exactCaracterLimitReservation": {
+    "nombre": "Ana",
+    "apellido": "Gomez Perez Dominguez Lopezito",
+    "email": "anagpdl@mail.com",
+    "telefono": "01234567890"
+  }
+}

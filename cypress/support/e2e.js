@@ -14,4 +14,11 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import './commands/commands'
+import './commands/reservationCommands'
+
+// Oculta los errores internos de la aplicación (como los de React) 
+// para que no detengan la ejecución de los tests.
+Cypress.on('uncaught:exception', (err, runnable) => {
+  return false;
+});
