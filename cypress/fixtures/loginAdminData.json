@@ -5,6 +5,6 @@
     },
     "invalidAdmin": {
         "username": "wrongUser",
-        "password": "wrongPass"
+        "password": "123456"
     }
 }

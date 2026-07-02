@@ -10,4 +10,16 @@ describe('Admin - Login', () => {
     cy.contains('Logout').should('be.visible')
     cy.url().should('include', '/admin/rooms')
     })
+  
+  it("TC-ADM-02 - Login fallido con credenciales inválidas", () => {
+    cy.intercept('POST', '/api/auth/login').as('loginRequest')
+    cy.fixture('loginAdminData').then((datos) => {
+      const validUser = datos.validAdmin.username
+      const invalidPassword = datos.invalidAdmin.password
+      cy.loginAsAdmin(validUser, invalidPassword)
+    })
+    cy.wait('@loginRequest').its('response.statusCode').should('eq', 401)
+    cy.contains('Invalid credentials').should('be.visible')
+    cy.url().should('include', '/admin')
+  })
 })
