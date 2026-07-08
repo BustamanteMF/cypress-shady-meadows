@@ -22,4 +22,15 @@ describe('Admin - Login', () => {
     cy.contains('Invalid credentials').should('be.visible')
     cy.url().should('include', '/admin')
   })
+
+  it.only("TC-ADM-03 - Login fallido con campos vacíos", () => {
+    cy.intercept('POST', '/api/auth/login').as('loginRequest')
+    cy.visit('/admin')
+    cy.get('#username').clear()
+    cy.get('#password').clear()
+    cy.get('#doLogin').click()
+    cy.wait('@loginRequest').its('response.statusCode').should('eq', 401)
+    cy.contains('Invalid credentials').should('be.visible')
+    cy.url().should('include', '/admin')
+  })
 })
