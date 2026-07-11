@@ -25,4 +25,19 @@ describe("Admin - Rooms", () => {
     cy.get('#type').should('have.value', 'Single')
     cy.get('#accessible').should('have.value', 'false')
   })
+
+  it("TC-ADM-05 - Crear una nueva habitación sin precio", () => {
+    cy.intercept('POST', '/api/room').as('createRoomRequest')
+
+    cy.get('#roomName').type('106')
+    cy.get('select#type').select('Suite')
+    cy.get('select#accessible').select('false')
+    cy.get('#roomPrice').clear() // Asegura que el campo de precio este vacio
+    cy.get(':nth-child(1) > :nth-child(2) > .form-check > [name="featureCheck"]').click()
+    cy.get('#createRoom').click()
+    
+    cy.wait('@createRoomRequest').its('response.statusCode').should('eq', 400)
+    cy.contains('Failed to create room').should('be.visible')
+    cy.get('#root-container > :nth-child(1)').contains('106').should('not.exist')
+  })
 })
