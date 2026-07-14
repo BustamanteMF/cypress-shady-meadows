@@ -17,6 +17,7 @@
 import './commands/commands'
 import './commands/reservationCommands'
 import './commands/loginCommands'
+import './commands/roomsCommands'
 
 // Oculta los errores internos de la aplicación (como los de React) 
 // para que no detengan la ejecución de los tests.

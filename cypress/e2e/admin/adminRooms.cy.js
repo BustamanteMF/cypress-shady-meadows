@@ -40,4 +40,19 @@ describe("Admin - Rooms", () => {
     cy.contains('Failed to create room').should('be.visible')
     cy.get('#root-container > :nth-child(1)').contains('106').should('not.exist')
   })
+
+  it.only("TC-ADM-06 - Eliminar una habitación", () => {
+    const roomName = "505"
+    cy.createRoom(roomName) // Crea una habitación para eliminarla después
+    
+    cy.intercept('DELETE', '/api/room/*').as('deleteRoomRequest')
+    cy.contains('[data-testid="roomlisting"]', roomName)
+      .find('.fa-remove.roomDelete')
+      .click()
+
+    cy.wait('@deleteRoomRequest').its('response.statusCode').should('eq', 202)
+    cy.get('#root-container > :nth-child(1)').contains(roomName).should('not.exist')
+    cy.reload()
+    cy.get('#root-container > :nth-child(1)').contains(roomName).should('not.exist')
+  })
 })
