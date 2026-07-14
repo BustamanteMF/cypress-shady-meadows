@@ -41,7 +41,7 @@ describe("Admin - Rooms", () => {
     cy.get('#root-container > :nth-child(1)').contains('106').should('not.exist')
   })
 
-  it.only("TC-ADM-06 - Eliminar una habitación", () => {
+  it("TC-ADM-06 - Eliminar una habitación", () => {
     const roomName = "505"
     cy.createRoom(roomName) // Crea una habitación para eliminarla después
     
