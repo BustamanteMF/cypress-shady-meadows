@@ -5,5 +5,12 @@
     "phone": "012345678912",
     "subject": "Consulta disponibilidad",
     "description": "Quiero consultar por disponibilidad en verano"
+  },
+  "invalidMessage": {
+    "name": "123456",
+    "email": "usuario",
+    "phone": "abcdefghijklm",
+    "subject": "123456789",
+    "description": "01234567890"
   }
 }
