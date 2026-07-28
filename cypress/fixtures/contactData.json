@@ -1,0 +1,9 @@
+{
+  "validMessage": {
+    "name": "validName",
+    "email": "validmail@example.com",
+    "subject": "Valid Subject",
+    "phone": "01234567890",
+    "description": "This is a valid message."
+  }
+}
