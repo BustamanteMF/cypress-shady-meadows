@@ -39,4 +39,22 @@ describe('Contact Form', () => {
       cy.reload()
     })
   })
+
+  it('TC-CON-03 - Envío de mensaje con longitud mínima de caracteres', () => {
+    cy.fixture('contactData').then((datos) => {
+      const short = datos.shortMessage
+      cy.get('[data-testid="ContactName"]').type(short.name)
+      cy.get('[data-testid="ContactEmail"]').type(short.email)
+      cy.get('[data-testid="ContactPhone"]').type(short.phone)
+      cy.get('[data-testid="ContactSubject"]').type(short.subject)
+      cy.get('[data-testid="ContactDescription"]').type(short.description)
+      cy.intercept('POST', '/api/message').as('postMessageRequest')
+      cy.get('.d-grid > .btn').click()
+      cy.wait('@postMessageRequest').its('response.statusCode').should('eq', 400)
+      cy.get('#contact').should('not.contain', 'Thanks for getting in touch '+ short.name)
+      cy.get('.alert').should('contain', 'Message must be between 20 and 2000 characters')
+      cy.checkFormRetention(short)
+      cy.reload()
+    })
+  })
 })

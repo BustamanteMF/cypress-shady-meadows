@@ -12,5 +12,12 @@
     "phone": "abcdefghijklm",
     "subject": "123456789",
     "description": "01234567890"
+  },
+  "shortMessage": {
+    "name": "Juan Perez",
+    "email": "juan@email.com",
+    "phone": "012345678912",
+    "subject": "Consulta disponibilidad",
+    "description": "Mensaje corto"
   }
 }
