@@ -19,5 +19,12 @@
     "phone": "012345678912",
     "subject": "Consulta disponibilidad",
     "description": "Mensaje corto"
+  },
+  "exactLimitMessage": {
+    "name": "Juan Perez",
+    "email": "juan@email.com",
+    "phone": "012345678912",
+    "subject": "Consulta disponibilidad",
+    "description": "12345678901234567890"
   }
 }

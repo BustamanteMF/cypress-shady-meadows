@@ -57,4 +57,22 @@ describe('Contact Form', () => {
       cy.reload()
     })
   })
+
+  it('TC-CON-04 - Envío de mensaje con limite exacto de caracteres', () => {
+    cy.fixture('contactData').then((datos) => {
+      const exact = datos.exactLimitMessage
+      cy.get('[data-testid="ContactName"]').type(exact.name)
+      cy.get('[data-testid="ContactEmail"]').type(exact.email)
+      cy.get('[data-testid="ContactPhone"]').type(exact.phone)
+      cy.get('[data-testid="ContactSubject"]').type(exact.subject)
+      cy.get('[data-testid="ContactDescription"]').type(exact.description)
+      cy.intercept('POST', '/api/message').as('postMessageRequest')
+      cy.get('.d-grid > .btn').click()
+      cy.wait('@postMessageRequest').its('response.statusCode').should('eq', 200)
+      cy.get('#contact').should('contain', 'Thanks for getting in touch '+ exact.name)
+        .and('contain', exact.subject)
+        .and('not.contain', 'Send Us a Message')
+      cy.reload()
+    })
+  })
 })
